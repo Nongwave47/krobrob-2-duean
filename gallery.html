@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แกลเลอรีของเรา 📸</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(to bottom, #a0e7ff, #b4f8c8);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #03045e;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: 'Pacifico', cursive;
+    color: #0077b6;
+    margin: 40px 0 20px 0;
+    font-size: 2.8rem;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto 50px auto;
+    padding: 0 15px;
+    z-index: 2;
+    position: relative;
+  }
+
+  .gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .gallery-item img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+  }
+
+  .caption {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #0077b6;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  /* Effect ลอยหัวใจ / ฟอง / ดาว */
+  .hearts, .bubbles, .stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    top:0; left:0; z-index:1;
+  }
+
+  .heart, .bubble, .star { position: absolute; border-radius: 50%; }
+
+  .heart {
+    width: 20px; height: 20px;
+    background: red;
+    transform: rotate(-45deg);
+    animation: float 5s linear infinite;
+    opacity: 0.8;
+  }
+  .heart::before, .heart::after {
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    width:100%;
+    height:100%;
+    background:red;
+  }
+  .heart::before { top:-50%; left:0; }
+  .heart::after { top:0; left:50%; }
+
+  @keyframes float { 0% { transform: translateY(0) rotate(-45deg); opacity:1; } 100% { transform: translateY(-600px) rotate(-45deg); opacity:0; } }
+  @keyframes rise { 0% { transform: translateY(0); opacity:0.7; } 100% { transform: translateY(-700px); opacity:0; } }
+  @keyframes twinkle { 0%,100% { opacity:0.3; } 50% { opacity:1; } }
+
+  /* ปุ่มย้อนกลับ - ต่อไป */
+  .nav-button {
+    position: fixed;
+    bottom: 30px;
+    padding: 15px 25px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0077b6;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    background: rgba(255,255,255,1);
+  }
+
+  .nav-button.prev { left: 30px; }
+  .nav-button.next { right: 30px; }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+  }
+
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+</style>
+</head>
+<body>
+
+<h1>แกลเลอรีเดือนที่ 2 ของเรา 📸</h1>
+
+<div class="gallery">
+  <div class="gallery-item">
+    <img src="12217_0.jpg" alt="ความทรงจำ 1">
+    <div class="caption">เวลาโทร 12 October 2025 (1)💕</div>
+  </div>
+  <div class="gallery-item">
+    <img src="12216_0.jpg" alt="ความทรงจำ 2">
+    <div class="caption">เวลาโทร 12 October 2025 (2)💕</div>
+  </div>
+  <div class="gallery-item">
+    <img src="12215_0.jpg" alt="ความทรงจำ 3">
+    <div class="caption">เวลาโทร 13 October 2025 💕</div>
+  </div>
+  <div class="gallery-item">
+    <img src="12214_0.jpg" alt="ความทรงจำ 4">
+    <div class="caption">เวลาโทร 14 October 2025 💕</div>
+  </div>
+  <div class="gallery-item">
+    <img src="12213_0.jpg" alt="ความทรงจำ 5">
+    <div class="caption">แกงแฟน 15 October 2025</div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="Preview">
+</div>
+
+<!-- Effect ลอย -->
+<div class="hearts"></div>
+<div class="bubbles"></div>
+<div class="stars"></div>
+
+<!-- ปุ่มย้อนกลับ - ต่อไป -->
+<a href="feelings.html" class="nav-button prev">⬅ ย้อนกลับ</a>
+<a href="countdown.html" class="nav-button next">ต่อไป ➡</a>
+
+<script>
+  // Lightbox
+  const galleryImgs = document.querySelectorAll('.gallery img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  galleryImgs.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+    });
+  });
+
+  lightbox.addEventListener('click', e => {
+    if(e.target !== lightboxImg){
+      lightbox.style.display = 'none';
+    }
+  });
+
+  // hearts / bubbles / stars
+  const heartsContainer = document.querySelector('.hearts');
+  const bubblesContainer = document.querySelector('.bubbles');
+  const starsContainer = document.querySelector('.stars');
+
+  function createHeart(){
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random()*100+'vw';
+    heart.style.width = 10+Math.random()*25+'px';
+    heart.style.height = heart.style.width;
+    heart.style.bottom = '-20px';
+    heartsContainer.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+  }
+
+  function createBubble(){
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+    bubble.style.left = Math.random()*100+'vw';
+    bubble.style.width = 5+Math.random()*15+'px';
+    bubble.style.height = bubble.style.width;
+    bubble.style.bottom = '-10px';
+    bubble.style.animation = `rise ${4+Math.random()*3}s linear`;
+    bubblesContainer.appendChild(bubble);
+    setTimeout(()=>bubble.remove(),6000);
+  }
+
+  function createStar(){
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.left = Math.random()*100+'vw';
+    star.style.top = Math.random()*100+'vh';
+    star.style.width = 2+Math.random()*3+'px';
+    star.style.height = star.style.width;
+    star.style.background = 'white';
+    star.style.animation = 'twinkle 2s infinite';
+    starsContainer.appendChild(star);
+    setTimeout(()=>star.remove(),3000);
+  }
+
+  setInterval(createHeart,300);
+  setInterval(createBubble,500);
+  setInterval(createStar,800);
+</script>
+
+</body>
+</html>

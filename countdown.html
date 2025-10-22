@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown ครบรอบ 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(to bottom, #a0e7ff, #b4f8c8);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #03045e;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: 'Sacramento', cursive;
+    font-size: 3rem;
+    margin-top: 50px;
+    color: #0077b6;
+  }
+
+  .countdown-container {
+    max-width: 700px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .countdown {
+    background: rgba(255,255,255,0.2);
+    padding: 25px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+
+  .countdown h2 {
+    font-family: 'Sacramento', cursive;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #0077b6;
+  }
+
+  .time {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .time div { text-align: center; }
+  .label { font-size: 0.8rem; display:block; color: #0077b6; }
+
+  /* hearts */
+  .hearts { position: fixed; width: 100%; height: 100%; pointer-events: none; top:0; left:0; z-index: 1; }
+  .heart { position: absolute; width: 15px; height: 15px; background: red; transform: rotate(-45deg); border-radius:50%; animation: float 5s linear infinite; opacity: 0.8; }
+  .heart::before, .heart::after { content:""; position:absolute; border-radius:50%; width:100%; height:100%; background:red; }
+  .heart::before { top:-50%; left:0; }
+  .heart::after { top:0; left:50%; }
+  @keyframes float { 0% { transform: translateY(0) rotate(-45deg); opacity:1; } 100% { transform: translateY(-600px) rotate(-45deg); opacity:0; } }
+
+  /* nav button */
+  .nav-button {
+    position: fixed;
+    bottom: 30px;
+    padding: 15px 25px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0077b6;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-button:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,1); }
+  .nav-button.prev { left: 30px; }
+  .nav-button.next { right: 30px; }
+</style>
+</head>
+<body>
+
+<h1>Countdown ครบรอบ 💖</h1>
+
+<div class="countdown-container">
+  <div class="countdown" id="count3m">
+    <h2>3 เดือน</h2>
+    <div class="time">
+      <div><span class="days">0</span><span class="label">วัน</span></div>
+      <div><span class="hours">0</span><span class="label">ชั่วโมง</span></div>
+      <div><span class="minutes">0</span><span class="label">นาที</span></div>
+      <div><span class="seconds">0</span><span class="label">วินาที</span></div>
+    </div>
+  </div>
+
+  <div class="countdown" id="count6m">
+    <h2>6 เดือน</h2>
+    <div class="time">
+      <div><span class="days">0</span><span class="label">วัน</span></div>
+      <div><span class="hours">0</span><span class="label">ชั่วโมง</span></div>
+      <div><span class="minutes">0</span><span class="label">นาที</span></div>
+      <div><span class="seconds">0</span><span class="label">วินาที</span></div>
+    </div>
+  </div>
+
+  <div class="countdown" id="count1y">
+    <h2>1 ปี</h2>
+    <div class="time">
+      <div><span class="days">0</span><span class="label">วัน</span></div>
+      <div><span class="hours">0</span><span class="label">ชั่วโมง</span></div>
+      <div><span class="minutes">0</span><span class="label">นาที</span></div>
+      <div><span class="seconds">0</span><span class="label">วินาที</span></div>
+    </div>
+  </div>
+
+  <div class="countdown" id="count2y">
+    <h2>2 ปี</h2>
+    <div class="time">
+      <div><span class="days">0</span><span class="label">วัน</span></div>
+      <div><span class="hours">0</span><span class="label">ชั่วโมง</span></div>
+      <div><span class="minutes">0</span><span class="label">นาที</span></div>
+      <div><span class="seconds">0</span><span class="label">วินาที</span></div>
+    </div>
+  </div>
+
+  <div class="countdown" id="count5y">
+    <h2>5 ปี</h2>
+    <div class="time">
+      <div><span class="days">0</span><span class="label">วัน</span></div>
+      <div><span class="hours">0</span><span class="label">ชั่วโมง</span></div>
+      <div><span class="minutes">0</span><span class="label">นาที</span></div>
+      <div><span class="seconds">0</span><span class="label">วินาที</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="hearts"></div>
+
+<a href="gallery.html" class="nav-button prev">⬅ ย้อนกลับ</a>
+<a href="timeline.html" class="nav-button next">ต่อไป ➡</a>
+
+<script>
+  // 🪄 เอฟเฟกต์เลื่อนขึ้นมาแบบนุ่ม
+  const stories = document.querySelectorAll('.countdown');
+  function checkStories() {
+    const triggerBottom = window.innerHeight * 0.85;
+    stories.forEach(story => {
+      const top = story.getBoundingClientRect().top;
+      if(top < triggerBottom){
+        story.style.opacity = '1';
+        story.style.transform = 'translateY(0)';
+      }
+    });
+  }
+  window.addEventListener('scroll', checkStories);
+  checkStories();
+
+  // 🕒 ตั้งเป้าหมายเวลาครบรอบ
+  const targets = {
+    count3m: new Date("2025-12-12T01:30:00").getTime(),
+    count6m: new Date("2026-03-12T01:30:00").getTime(),
+    count1y: new Date("2026-09-12T01:30:00").getTime(),
+    count2y: new Date("2027-09-12T01:30:00").getTime(),
+    count5y: new Date("2030-09-12T01:30:00").getTime()
+  };
+
+  function updateCountdown(id, target){
+    const now = new Date().getTime();
+    const gap = target - now;
+
+    const days = Math.floor(gap / (1000*60*60*24));
+    const hours = Math.floor((gap % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((gap % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((gap % (1000*60)) / 1000);
+
+    const container = document.getElementById(id);
+    container.querySelector('.days').innerText = days;
+    container.querySelector('.hours').innerText = hours;
+    container.querySelector('.minutes').innerText = minutes;
+    container.querySelector('.seconds').innerText = seconds;
+  }
+
+  setInterval(()=>{
+    updateCountdown('count3m', targets.count3m);
+    updateCountdown('count6m', targets.count6m);
+    updateCountdown('count1y', targets.count1y);
+    updateCountdown('count2y', targets.count2y);
+    updateCountdown('count5y', targets.count5y);
+  }, 1000);
+
+  // 💖 เอฟเฟกต์หัวใจลอย
+  const heartsContainer = document.querySelector('.hearts');
+  function createHeart(){
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random()*100+'vw';
+    heart.style.width = 10+Math.random()*20+'px';
+    heart.style.height = heart.style.width;
+    heart.style.bottom = '-20px';
+    heartsContainer.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+  }
+  setInterval(createHeart,300);
+</script>
+
+</body>
+</html>

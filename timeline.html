@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeline ความรักของเรา 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom, #a0e7ff, #b4f8c8);
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #03045e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 10px;
+    }
+
+    h1 {
+      font-family: 'Sacramento', cursive;
+      font-size: 2.8rem;
+      color: #0077b6;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: #0077b6;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .container {
+      padding: 20px 30px;
+      position: relative;
+      width: 50%;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease-out;
+    }
+
+    .container.left { left: 0; text-align: right; }
+    .container.right { left: 50%; text-align: left; }
+
+    .container::before {
+      content:'';
+      position: absolute;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border: 4px solid #0077b6;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .container.left::before { right: -10px; }
+    .container.right::before { left: -10px; }
+
+    .content {
+      background: rgba(255,255,255,0.2);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .date {
+      font-family: 'Sacramento', cursive;
+      font-size: 1.4rem;
+      color: #0077b6;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    @media screen and (max-width: 768px) {
+      .timeline::after { left: 20px; }
+      .container { width: 100%; padding-left: 50px; padding-right: 25px; }
+      .container.right { left: 0; }
+      .container.left::before,
+      .container.right::before { left: -30px; }
+      .container.left, .container.right { text-align: left; }
+    }
+
+    /* hearts */
+    .hearts { position: fixed; width: 100%; height: 100%; pointer-events: none; top:0; left:0; z-index: 1; }
+    .heart { position: absolute; width: 15px; height: 15px; background: red; transform: rotate(-45deg); border-radius:50%; animation: float 5s linear infinite; opacity: 0.8; }
+    .heart::before, .heart::after { content:""; position:absolute; border-radius:50%; width:100%; height:100%; background:red; }
+    .heart::before { top:-50%; left:0; }
+    .heart::after { top:0; left:50%; }
+    @keyframes float { 0% { transform: translateY(0) rotate(-45deg); opacity:1; } 100% { transform: translateY(-600px) rotate(-45deg); opacity:0; } }
+
+    /* nav button */
+    .nav-button {
+      position: fixed;
+      bottom: 30px;
+      padding: 15px 25px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0077b6;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-button:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,1); }
+    .nav-button.prev { left: 30px; }
+    .nav-button.next { right: 30px; }
+  </style>
+</head>
+<body>
+
+  <h1>💖 Timeline ความรักของเรา 💖</h1>
+
+  <div class="timeline">
+    <div class="container left">
+      <div class="content">
+        <div class="date">12 สิงหาคม 2025</div>
+        <p>เราเจอกันครั้งแรกวันนั้น... พี่เล่นแอปเพื่อหาเพื่อนคุยเฉย ๆ แต่พอได้เจอเธอ ลองคุยดูปรากฏว่าเข้ากันได้ดีมาก 🫶</p>
+      </div>
+    </div>
+
+    <div class="container right">
+      <div class="content">
+        <div class="date">หลังจากนั้นไม่นาน</div>
+        <p>เราแลกไอจีกัน แล้วคุยไปเรื่อย ๆ ความรู้สึกก็แน่นแฟ้นขึ้น 💬✨</p>
+      </div>
+    </div>
+
+    <div class="container left">
+      <div class="content">
+        <div class="date">12 กันยายน 2025</div>
+        <p>หลังจากคุยได้ 1 เดือน พี่ขอเธอเป็นแฟน 💓 ตั้งแต่วันนั้นเราก็เป็นแฟนกันอย่างเป็นทางการ</p>
+      </div>
+    </div>
+
+    <div class="container right">
+      <div class="content">
+        <div class="date">12 ตุลาคม 2025</div>
+        <p>วันครบรอบ 1 เดือนแรกของเรา 🥰 เวลาผ่านไปไวมาก แต่ความรู้สึกดี ๆ ยังคงเหมือนวันแรกที่เจอกัน</p>
+      </div>
+    </div>
+
+    <div class="container left">
+      <div class="content">
+        <div class="date">12 พฤศจิกายน 2025</div>
+        <p>เราเป็นแฟนกันมา 2 เดือนแล้ว 💞 ขอบคุณที่เข้ามาเป็นคนพิเศษในชีวิตนะ</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hearts"></div>
+
+  <a href="countdown.html" class="nav-button prev">⬅ กลับ</a>
+  <a href="letter.html" class="nav-button next">ต่อไป ➡</a>
+
+<script>
+  const containers = document.querySelectorAll('.container');
+
+  function checkTimeline() {
+    const triggerBottom = window.innerHeight * 0.85;
+    containers.forEach(box => {
+      const top = box.getBoundingClientRect().top;
+      if(top < triggerBottom){
+        box.style.opacity = '1';
+        box.style.transform = 'translateY(0)';
+      }
+    });
+  }
+
+  window.addEventListener('scroll', checkTimeline);
+  checkTimeline();
+
+  // hearts animation
+  const heartsContainer = document.querySelector('.hearts');
+  function createHeart(){
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random()*100+'vw';
+    heart.style.width = 10+Math.random()*20+'px';
+    heart.style.height = heart.style.width;
+    heart.style.bottom = '-20px';
+    heartsContainer.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+  }
+  setInterval(createHeart,300);
+</script>
+
+</body>
+</html>

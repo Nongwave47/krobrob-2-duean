@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จดหมายถึงเธอ 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, #b3e5fc, #e1f5fe);
+      font-family: 'Itim', cursive;
+      color: #035397;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .letter-container {
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 25px;
+      padding: 40px 50px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      position: relative;
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0288d1;
+      font-size: 2.3rem;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 1.15rem;
+      line-height: 1.9;
+      margin-bottom: 15px;
+      text-indent: 2rem;
+    }
+
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #ff8fab;
+      transform: rotate(45deg);
+      animation: float 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #ff8fab;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -7.5px; left: 0; }
+    .heart::after { left: -7.5px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+      100% { transform: translateY(-600px) rotate(45deg); opacity: 0; }
+    }
+
+    /* ปุ่มนำทาง */
+    .nav-button {
+      position: fixed;
+      bottom: 30px;
+      background: #fff;
+      color: #0288d1;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 25px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-prev {
+      left: 30px;
+    }
+
+    .nav-next {
+      right: 30px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts"></div>
+
+  <div class="letter-container">
+    <h1>ถึงคนพิเศษของฉัน 💙</h1>
+    <p>ขอบคุณที่เข้ามาในชีวิตนะ เธอเป็นเหมือนแสงเล็ก ๆ ที่ค่อย ๆ ส่องให้ทุกวันของฉันมันสดใสขึ้นเรื่อย ๆ :)</p>
+    <p>สองเดือนที่ผ่านมามันอาจไม่ยาวนานมาก แต่สำหรับฉันมันเต็มไปด้วยความทรงจำดี ๆ ที่อยากเก็บไว้นาน ๆ เลยแหละ</p>
+    <p>ขอบคุณที่เข้าใจ อดทน และอยู่ข้างกันเสมอ ต่อจากนี้ไม่ว่าจะเจออะไร เราจะผ่านไปด้วยกันนะ 💫</p>
+    <p style="text-align: right; margin-top: 30px;">จากใจฉัน 💌</p>
+  </div>
+
+  <!-- ปุ่มย้อนกลับ -->
+  <a href="timeline.html" class="nav-button nav-prev">⬅ ย้อนกลับ</a>
+
+  <!-- ปุ่มไปต่อ -->
+  <a href="gallery.html" class="nav-button nav-next">ต่อไป ➜</a>
+
+  <script>
+    const heartsContainer = document.querySelector('.hearts');
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.bottom = '-20px';
+      heart.style.width = 10 + Math.random() * 15 + 'px';
+      heart.style.height = heart.style.width;
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 400);
+  </script>
+</body>
+</html>
