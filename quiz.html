@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz ของพี่กับหนู 💙</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #a0e7ff, #b4f8c8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .quiz-container {
+      background: rgba(255,255,255,0.8);
+      padding: 30px 20px;
+      border-radius: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 450px;
+      width: 100%;
+    }
+    h1 {
+      font-family: 'Sacramento', cursive;
+      color: #0077b6;
+      font-size: 2.5rem;
+      margin-bottom: 25px;
+    }
+    .question {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #03045e;
+    }
+    .options button {
+      background-color: #90e0ef;
+      color: #03045e;
+      border: none;
+      border-radius: 15px;
+      padding: 10px 20px;
+      margin: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .options button:hover {
+      background-color: #00b4d8;
+      color: #fff;
+      transform: scale(1.05);
+    }
+    .result {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+    .btn-back {
+      margin-top: 25px;
+      background-color: #caf0f8;
+      color: #03045e;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn-back:hover {
+      background-color: #90e0ef;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>💙 Quiz ของเรา 2 คน 💙</h1>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="result" id="result"></div>
+    <button class="btn-back" onclick="window.location.href='promise.html'">⬅ กลับหน้า Promise</button>
+  </div>
+
+  <script>
+    const quizData = [
+      { q: "พี่กับหนูรู้จักกันจากที่ไหน?", options: ["ในเกม", "แอปหาเพื่อนคุย", "เพื่อนแนะนำ"], answer: "แอปหาเพื่อนคุย" },
+      { q: "ใครเป็นฝ่ายทักก่อน?", options: ["หนู", "พี่", "พร้อมกัน"], answer: "พี่" },
+      { q: "เราคุยกันครั้งแรกแล้วรู้สึกยังไง?", options: ["เฉย ๆ", "รู้สึกดี แปลก ๆ", "เบื่อ"], answer: "รู้สึกดี แปลก ๆ" },
+      { q: "หนูกับพี่เรียกกันว่าอะไร?", options: ["ที่รัก-ที่รัก", "บู๋-มิว", "พี่-หนู"], answer: "พี่-หนู" },
+      { q: "ตอนนี้เราห่างกันประมาณกี่กิโล?", options: ["300", "500", "700 กว่า"], answer: "700 กว่า" },
+      { q: "เราเคยเจอกันตัวจริงไหม?", options: ["เคยแล้ว", "ยังไม่เคยเลย"], answer: "ยังไม่เคยเลย" },
+      { q: "สิ่งที่ทำแทนการเจอกันคืออะไร?", options: ["โทรคุยเปิดกล้อง", "ส่งจดหมาย", "วิดีโอคอลสั้น ๆ"], answer: "โทรคุยเปิดกล้อง" },
+      { q: "ใครมักจะง่วงก่อนตอนคุยกัน?", options: ["พี่", "หนู"], answer: "หนู" },
+      { q: "ถ้าหนูงอน พี่จะทำยังไง?", options: ["ปล่อยไว้ก่อน", "รีบง้อทันที", "เงียบ"], answer: "รีบง้อทันที" },
+      { q: "พี่ชอบหนูเพราะอะไร?", options: ["น่ารัก", "คุยสนุก", "อยู่ด้วยแล้วสบายใจ"], answer: "อยู่ด้วยแล้วสบายใจ" },
+      { q: "หนูมักจะเรียกพี่ว่าอะไร?", options: ["พี่เฉย ๆ", "พี่,แฟน", "พี่บ้า"], answer: "พี่,แฟน" },
+      { q: "หนูเคยพูดว่า 'พี่จำไม่ได้หรอ' กี่ครั้งแล้ว?", options: ["1", "2", "นับไม่ถ้วน"], answer: "นับไม่ถ้วน" },
+      { q: "สิ่งที่พี่พูดบ่อยที่สุดคืออะไร?", options: ["หนูน่ารักจัง", "กินข้าวยัง", "คิดถึงแฟนน"], answer: "คิดถึงแฟนนน" },
+      { q: "หนูชอบให้พี่เรียกว่าอะไร?", options: ["หนู", "ที่รัก", "เด็กดี"], answer: "หนู" },
+      { q: "เวลาไม่คุยกัน พี่จะทำยังไง?", options: ["เล่นเกม", "ฟังเพลงแล้วคิดถึง", "นอน"], answer: "นอน" },
+      { q: "พี่อยู่จังหวัดอะไรนะ?", options: ["สุราษฎร์", "กรุงเทพฯ", "เชียงใหม่"], answer: "สุราษฎร์" },
+      { q: "เราคบกันวันที่เท่าไหร่นะ?", options: ["12 ส.ค.", "12 ก.ย.", "12 ต.ค."], answer: "12 ก.ย." },
+      { q: "พี่เคยบอกหนูว่าอะไรเกี่ยวกับอนาคต?", options: ["อยากมีบ้านด้วยกัน", "อยากแต่งงาน", "อยากเจอหนูจริง ๆ", "ถูกทุกข้อ"], answer: "ถูกทุกข้อ" },
+      { q: "หนูมักจะพูดคำไหนเวลาพี่พูดหวาน?", options: ["เขิน", "หยุดเลย!", "บ้า"], answer: "เขิน" },
+      { q: "สุดท้ายแล้ว พี่อยากบอกหนูว่า...", options: ["รักมากนะ", "ฝันดีนะ", "อย่าลืมพี่นะ"], answer: "รักมากนะ" }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById('question');
+    const optionsEl = document.getElementById('options');
+    const resultEl = document.getElementById('result');
+
+    function loadQuestion() {
+      if (current >= quizData.length) {
+        questionEl.textContent = "จบแล้ว 💖";
+        optionsEl.innerHTML = "";
+        resultEl.textContent = `แฟนตอบถูกทั้งหมด ${score}/${quizData.length} ข้อเลยจ้า 🥰`;
+        resultEl.style.color = "#0077b6";
+        return;
+      }
+
+      const data = quizData[current];
+      questionEl.textContent = data.q;
+      optionsEl.innerHTML = "";
+
+      data.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.textContent = option;
+        btn.onclick = () => checkAnswer(option);
+        optionsEl.appendChild(btn);
+      });
+
+      resultEl.textContent = "";
+    }
+
+    function checkAnswer(selected) {
+      const correct = quizData[current].answer;
+      if (selected === correct) {
+        resultEl.textContent = "ถูกแล้วว 💙🥰";
+        resultEl.style.color = "#0077b6";
+        score++;
+      } else {
+        resultEl.textContent = "แง ผิดน้า 😝";
+        resultEl.style.color = "#555";
+      }
+      current++;
+      setTimeout(loadQuestion, 1000);
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

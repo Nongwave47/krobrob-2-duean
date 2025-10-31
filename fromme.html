@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Me to You 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #caf0f8, #ade8f4, #90e0ef);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #03045e;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Sacramento', cursive;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, #0077b6, #00b4d8);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none; /* ป้องกัน underline */
+    }
+
+
+    .message {
+      background: rgba(255,255,255,0.3);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 80%;
+      max-width: 600px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .credits {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+
+    .nav-button {
+      position: fixed;
+      bottom: 30px;
+      padding: 12px 25px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0077b6;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      z-index: 1000;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-button.back {
+      left: 30px;
+    }
+
+    .heart, .sparkle {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #ffb6c1;
+      transform: rotate(45deg);
+      animation: float 6s infinite ease-in-out;
+      opacity: 0.7;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #ffb6c1;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -8px; left: 0; }
+    .heart::after { left: 8px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+      100% { transform: translateY(-700px) rotate(45deg); opacity: 0; }
+    }
+
+    /* ปุ่มเพลง */
+    .music-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      padding: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+    .music-btn:hover { transform: scale(1.1); }
+  </style>
+</head>
+<body>
+  <h1>From Me to You 💌</h1>
+
+  <div class="message">
+    <p>เธอรู้ไหม ว่าตลอดเวลาที่เราคุยกัน มันมีความหมายมากแค่ไหนสำหรับพี่ 💙  
+    ขอบคุณที่เข้ามาเติมเต็มวันธรรมดา ๆ ให้กลายเป็นวันที่อบอุ่น  
+    แม้เราจะอยู่ห่างกันกว่า 700 กิโล แต่หัวใจเรากลับใกล้กันเสมอ 💫  
+    </p><br>
+    <p>พี่สัญญาว่าจะอยู่ตรงนี้ ไม่ว่าจะวันไหน จะไม่หายไป และจะคอยดูแลจากตรงนี้เสมอ  
+    ขอบคุณที่เป็นเธอ... และขอบคุณที่ยังอยู่ตรงนี้ 🫶</p>
+  </div>
+
+  <div class="credits">
+    <p>สร้างด้วยหัวใจ 💻 โดยฉัน</p>
+    <p>เพื่อเธอ — คนที่พิเศษที่สุด 💙</p>
+  </div>
+
+  <a href="index.html" class="nav-button back">กลับไปหน้าแรก 🌷</a>
+  <button class="music-btn" id="musicBtn">🎵</button>
+
+  <!-- เพลง -->
+  <audio id="bgMusic" loop>
+    <source src="music/lovely.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // ปุ่มเปิด/ปิดเพลง
+    const musicBtn = document.getElementById("musicBtn");
+    const bgMusic = document.getElementById("bgMusic");
+    let playing = false;
+
+    musicBtn.addEventListener("click", () => {
+      if (!playing) {
+        bgMusic.play();
+        musicBtn.textContent = "🔇";
+      } else {
+        bgMusic.pause();
+        musicBtn.textContent = "🎵";
+      }
+      playing = !playing;
+    });
+
+    // เอฟเฟกต์หัวใจลอย
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 700);
+  </script>
+</body>
+</html>

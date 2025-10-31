@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>คำสัญญาของเรา 💍</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom right, #a0e7ff, #b4f8c8);
+      color: #03396c;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Sacramento', cursive;
+      font-size: 3rem;
+      color: #0077b6;
+      margin-bottom: 30px;
+    }
+
+    .promise-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .promise {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .promise:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* ปุ่มนำทาง */
+    .nav-button {
+      position: fixed;
+      bottom: 30px;
+      padding: 15px 25px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0077b6;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1000;
+    }
+    .nav-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      background: rgba(255,255,255,1);
+    }
+    .nav-button.prev { left: 30px; }
+
+    .nav-button.next {
+      right: 30px;
+      bottom: 30px;
+    }
+
+    /* หัวใจลอย */
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #ff4d6d;
+      transform: rotate(-45deg);
+      animation: float 5s linear infinite;
+      opacity: 0.7;
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #ff4d6d;
+    }
+    .heart::before { top: -50%; left: 0; }
+    .heart::after { top: 0; left: 50%; }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+      100% { transform: translateY(-600px) rotate(-45deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>คำสัญญาของพี่ถึงเธอ 💍</h1>
+
+  <div class="promise-list">
+    <div class="promise">💖 จะไม่ปล่อยให้เธอต้องรู้สึกโดดเดี่ยว ไม่ว่าจะเจอเรื่องอะไร</div>
+    <div class="promise">💌 จะคอยอยู่ข้าง ๆ เป็นทั้งคนฟังและคนที่ให้กำลังใจเสมอ</div>
+    <div class="promise">🌙 จะไม่ลืมบอก “ฝันดีนะ” ทุกคืน</div>
+    <div class="promise">🌤️ จะคุยกันก่อนนอนทุกวัน แม้บางวันจะง่วงแค่ไหน</div>
+    <div class="promise">💞 จะซื่อสัตย์ และไม่ทำให้เธอต้องเสียใจ</div>
+    <div class="promise">🎡 จะพาไปเที่ยวในที่ที่เธออยากไปให้ได้ทุกที่เลย</div>
+    <div class="promise">💫 จะเก็บทุกความทรงจำดี ๆ ไว้ในใจตลอดไป</div>
+  </div>
+
+  <a href="letter.html" class="nav-button prev">⬅ ย้อนกลับ</a>
+  <a href="quiz.html" class="nav-button next">ต่อไป ➡</a>
+
+  <div class="hearts"></div>
+
+  <script>
+    // หัวใจลอย
+    const heartsContainer = document.querySelector('.hearts');
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.width = 10 + Math.random() * 20 + 'px';
+      heart.style.height = heart.style.width;
+      heart.style.bottom = '-20px';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
